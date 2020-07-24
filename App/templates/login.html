@@ -1,0 +1,140 @@
+{% extends 'basic.html' %}
+
+{% block title %} SignIn {% endblock %}
+{% block css %}
+
+
+#btn{
+	width:300px;
+	}
+.container{
+	width:350px;
+	}
+#form{
+	margin-top:10px;
+	}
+.form-group{
+	width:300px;
+	}
+#btn1{
+	width:350px;
+	}
+#line{
+	width:100px;
+	}
+#sticky-footer {
+  flex-shrink: none;
+  margin-top:10px;
+  }
+#social{
+float:left;
+} 
+
+.fa {
+  margin-top:-5px;
+  padding: 5px;
+  font-size: 25px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+.fa:hover {
+  opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  margin-top:30px;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-instagram {
+  background: #f09433;
+  color: white;
+}
+.fa-linkedin {
+  background: #0077B5;
+  color: white;
+}
+#subscbe{
+	color:white;
+	margin-left:-420px;
+	}
+.subs{
+	width:250px;
+	border:none;
+	height:50px;
+	padding:15px;
+	margin-left:-225px;
+}
+.sub_btn{
+	height:50px;
+	border:none;
+	background:#1aaa1a;
+}
+.sub_p{
+	color:#999;
+	margin-left:-30px;
+	margin-top:-20px;
+	font-style:italic;
+	font-size:15px;
+}
+#copy{
+	margin-top:-60px;
+	}
+#line-center{
+	margin-left:85px;
+	}
+{% endblock %}
+{% block body %} 
+
+<div class="container bg-light text-dark">
+<form>
+
+  <div class="form-group" id="form">
+	<h2><b>Login</b></h2>
+    <label for="EmailOrphone">Email or Mobile Number</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email or Mobile Number">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-warning" id="btn">Continue</button>
+	 <small id=".." class="form-text text-muted">By continuing, you agree to Amazon's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.<br><br>
+		<ul><li><a href="#">Forget Password</a></li></ul></small>
+  </div>
+</form>
+</div>
+<div class="container">
+	<hr><h6 id="line-center">New to SMARTCart?</h6><hr>
+<button type="submit" class="btn btn-secondary" id="btn1">Create your SMARTCart account</button>
+</div>
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom">
+      <div id="social">
+		<a href="https://www.facebook.com/buddy.sj" class="fa fa-facebook" style="margin-left:10px;"></a>
+		<a href="https://twitter.com/Ess_Jay2" class="fa fa-twitter"></a>
+		<a href="https://www.instagram.com/theshubham31/?hl=en" class="fa fa-instagram"></a>
+		<a href="https://www.linkedin.com/in/shubham-jain-48a941174/" class="fa fa-linkedin"></a>
+	  </div>
+						<div class="footer_sub_3">
+							 <center>
+							 <h4><font color="arial" id="subscbe">Subscribe Us</font></h4>
+							 <input type="text" name="subs" placeholder="Write your e-mail" class="subs">
+							 <input type="submit"name="submit_btn" value="Subscribe" class="sub_btn"><br><br>
+							 <p class="sub_p">Enter your e-mail id for get notification for us.</p>
+							 </center>
+						</div>
+	  <div class="container text-center" id="copy"  style="margin-left:980px;">
+	  <small>Copyright &copy:  <a href="http://127.0.0.1:8000/shop/" style="color:white";> SMARTCart.com</a></small>
+    </div>
+  </footer>
+
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}

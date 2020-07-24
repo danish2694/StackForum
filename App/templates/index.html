@@ -1,0 +1,387 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <title>Quora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <link rel="StyleSheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Navbar</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1">Contact Us</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+            </form>
+            <a href="#" class="btn btn-primary mr-2">Sign In</a>
+            <a href="#" class="btn btn-secondary">Sign up</a>
+        </div>
+    </nav>
+
+    <!-- Banner Image -->
+    <div class="bannerWrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                    <br><br>
+                    <h4>Share & grow the world's knowledge!</h4><br>
+                    <p>We want to connect the people who have knowledge to the people who need it, to bring together
+                        people with different perspectives so they can understand each other better, and to empower
+                        everyone to share their knowledge.</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <br><br>
+                    <a href="#" class="btn btn-primary" style="position:absolute;bottom:0;">Create A New Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Area -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="fas fa-home"></i>Home</h6>
+                </a>
+                
+                <a href="#" class="leftSideDivOpt">
+                    <h6>
+                        <i class="far fa-question-circle"></i>Questions</h6>
+                </a>
+                <br>
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="fas fa-poll"></i>Poll
+                </a>
+                <br><br>
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="fas fa-tags"></i>Tags
+                </a><br><br>
+
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="fas fa-ribbon"></i>Badges
+                </a><br><br>
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="fas fa-user"></i>User
+                </a><br><br>
+                <a href="#" class="leftSideDivOpt">
+                    <h6><i class="far fa-life-ring"></i>Help
+                </a><br><br>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                <!-- Tab links -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Recent_Question')">Recent Question</button>
+                    <button class="tablinks" onclick="openCity(event, 'Most_Answered')">Most Answered</button>
+                    <button class="tablinks" onclick="openCity(event, 'Question_Bump')">Question Bump</button>
+                    <button class="tablinks" onclick="openCity(event, 'Answers')">Answers</button>
+                    <button class="tablinks" onclick="openCity(event, 'Most_Visited')">Most visited</button>
+                    <button class="tablinks" onclick="openCity(event, 'Another')">...</button>
+                </div>
+
+                <!-- Tab content -->
+                <div id="Recent_Question" class="tabcontent">
+
+                    {% for question in AllQuestions %}
+                    <div class="border-bottom pb-2">
+                        <h6>
+                            
+                            <img src="{{question.User.profilePic.url}}" class="midprofile">
+                            <span class="mr-2">{{question.User.FirstName}} {{question.User.LastName}}</span>
+                            {{question.user|length}}
+                            <span class="mr-1 btn-warning">Enlightened</span>
+                            <span style="color:grey;font-size:small;">Asked:<span> April 19, 2018</span></span>
+                            <span style="color:grey;font-size:small;" class="ml-2">In:<span>Programmers</span></span>
+                            <br>
+
+                        </h6>
+
+                        <div class="row">
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                <center>
+
+                                    <h3 style="cursor: pointer;color:grey;font-weight: bolder;">
+                                        <span onclick="votes('up--{{question.questionId}}')"
+                                            class="material-icons" onclick="">
+                                            arrow_drop_up
+                                        </span><br>
+                                        <span>{{question.votes|length}}</span><br>
+                                        <span class="material-icons" onclick="votes('down--{{question.questionId}}')">
+                                            arrow_drop_down
+                                        </span></h3>
+                                </center>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+                                <span style="font-size:large;font-weight: bold;">{{question.question}}</span>
+                                <br><span style="color:gray">A friend of mine is the CEO of his own small business.
+                                    We’re
+                                    not very close friends, but we know each other well enough to have visited each
+                                    other’s
+                                    houses for dinner and drinks a few times. His business is advertising ...</span>
+                                <div class="midDivinnerSect">
+                                    <button>6 Answer</button>
+                                    <button>1k Views</button>
+                                    <button class="float-right"><strong>Answer</strong></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-block mt-4">Load more Questions</button>
+                    {% endfor %}
+                </div>
+
+                <div id="Most_Answered" class="tabcontent">
+                    <h3>Most_Answered</h3>
+                    <p>Paris is the capital of France.</p>
+                </div>
+
+                <div id="Question_Bump" class="tabcontent">
+                    <h3>Question_Bump</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                </div>
+                <div id="Answers" class="tabcontent">
+                    <h3>Recent_Question</h3>
+                    <p>London is the capital city of England.</p>
+                </div>
+
+                <div id="Most_Visited" class="tabcontent">
+                    <h3>Most_Answered</h3>
+                    <p>Paris is the capital of France.</p>
+                </div>
+
+                <div id="Another" class="tabcontent">
+                    <h3>Another</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                <div class="rightSideDiv">
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                      Ask a Question
+                    </button>
+
+                    
+
+                    <hr>
+                    <table>
+                        <tr>
+                            <td class="border">
+                                <p style="color:blue;">Question<br>
+                                    <strong style="color:black;">21</strong></p>
+                            </td>
+
+                            <td>
+                                <p style="color:red;">Answer
+                                    <strong style="color:black;">100</strong></p>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="border">
+                                <p style="color:green;">Best Answer
+                                    <strong style="color:black;">21</strong></p>
+                            </td>
+
+                            <td>
+                                <p style="color:blue;">Users
+                                    <strong style="color:black;">100</strong></p>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                    <!-- Popular/Answer Section -->
+                    <!-- Tab links -->
+                    <br>
+                    <div class="tab">
+                        <button class="tablinks1" onclick="openCity1(event, 'RightPopular')">Popular</button>
+                        <button class="tablinks1" onclick="openCity1(event, 'RightAnswer')">Answer</button>
+                    </div>
+
+                    <!-- Tab content -->
+
+                    <div id="RightPopular" class="tabcontent1">
+                        <p><img src="{% static 'images/user.png' %}">How to approach applying for a job at a company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}">How to approach applying for a job at a company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}">How to approach applying for a job at a company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                    </div>
+
+                    <div id="RightAnswer" class="tabcontent1">
+                        <p><img src="{% static 'images/user.png' %}">How to approach applying for a job at a company<br>
+                            <span>April 19,2018 at 2:07Pm</span></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}">How to approach applying for a job at a company<br>
+                            <span>April 19,2018 at 2:07Pm</span></p>
+                        <hr>
+
+                    </div>
+
+                    <div>
+                        <h5><strong><span class="mr-2">?</span>Related Questions</strong></h5>
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+                    </div>
+
+                    <div>
+                        <h5><strong><span class="mr-2"><i class="fa fa-user"></i></span>Top Members</strong></h5>
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+
+                        <p><img src="{% static 'images/user.png' %}" class="profilePic">How to approach applying for a job at a
+                            company<br>
+                            <a href="#"><span>6 Answer</span></a></p>
+                        <hr>
+                    </div>
+
+                    <div>
+                        <h5><strong><span class="mr-2"><i class="fa fa-user"></i></span>Tranding Tags</strong></h5>
+                        <a href="#" class="tagBtn">Analytics</a>
+                        <a href="#" class="tagBtn">Facebook</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <!-- Ask Question Modal Start -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Ask a Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST">{% csrf_token %}
+                    <textarea name="question" id="question" placeholder="Type Your Question" class="w-100 " style="resize: none;" >
+                        
+                    </textarea>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="questionbtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- Modal End -->
+
+<div>
+    <div class="bg-dark" style="color:#fff;text-align: center;">
+        <!-- <div class="row container">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12"><h2>Navbar</h2><br><p>Discy is a social questions & Answers Engine which will help you establis your community and connect with other people.</p></div>
+
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>About Us</strong>Meet The Team<br>
+                Blog<br>
+                About Us<br>
+                Contact Us</p></div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>Legal Stuff
+            </strong>Terms of Use<br>
+            Privacy Policy<br>
+            Cookie Policy</p></div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>Help</strong>Knowledge Base<br>
+                Support</p></div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-12"><p><strong>Follow</strong></p></div>
+        </div> -->
+        <p >
+            Copyright ©2020 All rights reserved
+            </p>
+    </div>
+</div>
+
+   <!--  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript">
+        $('document').ready(function()
+{
+    $('textarea').each(function(){
+            $(this).val($(this).val().trim());
+        }
+    );
+});
+    </script>
+</body>
+
+</html>

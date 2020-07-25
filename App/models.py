@@ -28,11 +28,11 @@ class UserDetail(models.Model):
 
 class Votes(models.Model):
 	class params:
-		db = 'default'
+		db = 'second'
+	questionId = models.CharField(max_length=100)
 	userId = models.CharField(max_length=50)
-	voteType = models.IntegerField(blank=True)		# 0 for down 1 for up
-	class Meta:
-		abstract = True
+	voteType = models.IntegerField(blank=True)		# -1 for down 1 for up
+	
 
 class Questions(models.Model):
 	class params:
@@ -43,11 +43,10 @@ class Questions(models.Model):
 	totalVotes = models.IntegerField(default=0,blank=True)
 	date = models.DateTimeField(auto_now_add=True, blank=True)
 	User = models.ForeignKey(UserDetail,on_delete=models.CASCADE,related_name='user')
-	voteDetails = models.ArrayField(model_container=Votes)
+	
 
-
-	# def __str__(self):
-	# 	return self.userId
+	def __str__(self):
+		return self.userId
 
 
 class Blog(models.Model):
@@ -65,3 +64,7 @@ class Entry(models.Model):
     
     headline = models.CharField(max_length=255)    
     objects = models.DjongoManager()
+
+
+# 	Book.objects.aggregate(
+# ...     price_diff=Max('price', output_field=FloatField()) - Avg('price'))

@@ -121,7 +121,7 @@
                             
                             <img src="{{question.User.profilePic.url}}" class="midprofile">
                             <span class="mr-2">{{question.User.FirstName}} {{question.User.LastName}}</span>
-                            {{question.user|length}}
+                            
                             <span class="mr-1 btn-warning">Enlightened</span>
                             <span style="color:grey;font-size:small;">Asked:<span> April 19, 2018</span></span>
                             <span style="color:grey;font-size:small;" class="ml-2">In:<span>Programmers</span></span>
@@ -139,7 +139,7 @@
                                             class="material-icons" onclick="">
                                             arrow_drop_up
                                         </span><br>
-                                        <span>{{question.votes|length}}</span><br>
+                                        <span>{{question.totalVotes}}</span><br>
                                         <span class="material-icons" onclick="votes('down--{{question.questionId}}')">
                                             arrow_drop_down
                                         </span></h3>

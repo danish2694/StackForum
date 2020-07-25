@@ -97,6 +97,21 @@ def vote(request):
 	
 	voteCount = Questions.objects.get(questionId=questionId).totalVotes
 
+	if upVoteRecord and action == 'up':
+		print('1')
+		pass
+	elif upVoteRecord and action == 'down':
+		print('2')
+		Questions.objects.filter(questionId=questionId).update(totalVotes=voteCount - 1)
+	
+	elif downVoteRecord and action == 'down':
+		print('3')
+		pass
+	elif downVoteRecord and action == 'up':
+		print('4')
+		Questions.objects.filter(questionId=questionId).update(totalVotes=voteCount + 1)
+
+
 	if voteRecord and action == 'up':
 		Votes.objects.using('second').filter(questionId=questionId,userId=request.session['user']
 		).update(voteType=Case(
@@ -113,23 +128,9 @@ def vote(request):
 		
 	else:
 		Votes(questionId=questionId,userId=request.session['user'],voteType=voteType).save(using='second')
-		Questions.objects.filter(questionId=questionId).update(totalVotes = voteCount+1)
+		Questions.objects.filter(questionId=questionId).update(totalVotes = voteCount + voteType)
 
-	if upVoteRecord and action == 'up':
-		pass
-	elif:
-		Questions.objects.filter(questionId=questionId).update(
-			totalVotes=Questions.objects.get(questionId=questionId).totalVotes +1)
-	
-	# if Votes.objects.using('second').filter(questionId=questionId,userId=request.session['user']
-	# 	,voteType=-1).exists() and action == 'down':
-	# 	pass
-	# else:
-	# 	Questions.objects.filter(questionId=questionId).update(
-
-
-	# 		totalVotes=Questions.objects.get(questionId=questionId).totalVotes -1)
-	
+		
 	return HttpResponse('done')
 
 

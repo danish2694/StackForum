@@ -1,0 +1,149 @@
+{% load static %}
+
+<!doctype html>
+<html>
+
+<head>
+    <title>Quora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <link rel="StyleSheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Navbar</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1">Contact Us</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+            </form>
+            <a href="#" class="btn btn-primary mr-2">Sign In</a>
+            <a href="#" class="btn btn-secondary">Sign up</a>
+        </div>
+    </nav>
+
+    <!-- Banner Image -->
+    <div class="bannerWrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                    <br><br>
+                    <h4>Share & grow the world's knowledge!</h4><br>
+                    <p>We want to connect the people who have knowledge to the people who need it, to bring together
+                        people with different perspectives so they can understand each other better, and to empower
+                        everyone to share their knowledge.</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <br><br>
+                        <button type="button" id="questionModalButton" class="btn btn-primary" style="position:absolute;bottom:0;" data-toggle="modal" 
+                        {% if request.session.user %} data-target="#exampleModalCenter" {% endif %}>
+                            Ask a Question
+                        </button>
+                </div>
+                    <!-- Ask Question Modal Start -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Ask a Question</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST">{% csrf_token %}
+                      <textarea name="question" id="question" placeholder="Type Your Question" class="w-100 " style="resize: none;" >
+                          
+                      </textarea>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" id="questionbtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  <!-- Modal End -->
+            </div>
+        </div>
+    </div>
+    
+    {% block body %}
+    {% endblock %}
+
+    <div>
+    <div class="bg-dark" style="color:#fff;text-align: center;">
+        <!-- <div class="row container">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12"><h2>Navbar</h2><br><p>Discy is a social questions & Answers Engine which will help you establis your community and connect with other people.</p></div>
+
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>About Us</strong>Meet The Team<br>
+                Blog<br>
+                About Us<br>
+                Contact Us</p></div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>Legal Stuff
+            </strong>Terms of Use<br>
+            Privacy Policy<br>
+            Cookie Policy</p></div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12"><p><strong>Help</strong>Knowledge Base<br>
+                Support</p></div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-12"><p><strong>Follow</strong></p></div>
+        </div> -->
+        <p >
+            Copyright ©2020 All rights reserved
+            </p>
+    </div>
+</div>
+
+   <!--  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript">
+        $('document').ready(function()
+{
+    $('textarea').each(function(){
+            $(this).val($(this).val().trim());
+        }
+    );
+});
+
+    </script>
+</body>
+</html>

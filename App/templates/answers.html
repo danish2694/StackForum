@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+            <br>
+            <a href="/" class="leftSideDivOpt">
+                <h6><i class="fas fa-home"></i>Home</h6>
+            </a>
+            
+            <a href="#" class="leftSideDivOpt">
+                <h6>
+                    <i class="far fa-question-circle"></i>Questions</h6>
+            </a>
+            <br>
+            <a href="#" class="leftSideDivOpt">
+                <h6><i class="fas fa-poll"></i>Poll
+            </a>
+            <br><br>
+            <a href="#" class="leftSideDivOpt">
+                <h6><i class="fas fa-tags"></i>Tags
+            </a><br><br>
+
+            <a href="#" class="leftSideDivOpt">
+                <h6><i class="fas fa-ribbon"></i>Badges
+            </a><br><br>
+            <a href="#" class="leftSideDivOpt">
+                <h6><i class="fas fa-user"></i>User
+            </a><br><br>
+            <a href="#" class="leftSideDivOpt">
+                <h6><i class="far fa-life-ring"></i>Help
+            </a><br><br>
+        </div>
+
+        
+<div id="Recent_Question" class="tabcontent col-md-10" style="display: block;">
+      
+    <div class="border-bottom pb-2 col-md-12">
+        <br>
+        <h6>
+            <span style="font-size:large;font-weight: bold; margin-left: 10%;">
+                                    
+                {{questionData.question}}
+                
+                </span>
+            
+            <br>
+            <span style="color:grey;font-size:small; margin-left: 10%;">Asked: <span> {{questionData.date}}</span></span>
+            <span style="color:grey;font-size:small; margin-left: 10%;" class="ml-2">In:<span>Programmers</span></span>
+            <br>
+
+        </h6>
+
+        {% for ans in AllAnswers %}
+            
+        <div class="row">
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 my-4">
+                <center>
+                    
+                    <h3 style="cursor: pointer;color:grey;font-weight: bolder;">
+                        <span data-href="{{ans.answerId}}" data-value="{{questionData.questionId}}" class="material-icons vote" name="up">
+                            arrow_drop_up
+                        </span><br>
+                        <span>{{ans.totalVotes}}</span><br>
+                        <span data-href="{{ans.answerId}}" data-value="{{questionData.questionId}}" class="material-icons vote" name="down">
+                            arrow_drop_down
+                        </span></h3>
+                </center>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+                
+                <br>
+                <span style="color:gray">
+                     
+                    <img src="/media/media/user.png" class="midprofile">
+                    <span class="mr-2">{{ans.User}}</span>
+                    <small>{{ans.date}}</small>
+                    <br>
+                    <span> {{ans.answer}}</span>
+                    <br>
+                    {{ans.answerId}}
+                    <hr>
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+        <style>
+            textarea:focus{
+                outline-color: none;
+                box-shadow: 0 0 10px;
+            }
+            #answerbtn{
+                box-shadow: 0 0 0;
+            }
+            #answerbtn:hover{
+                box-shadow: 10px 5px 15px;
+            }
+        </style>
+        <div class="midDivinnerSect">
+            <form id="answersubmit" method="POST" action="/postanswer/">{% csrf_token %}
+                <input type="hidden" value="{{questionData.questionId}}" name="questionId">
+                <textarea id="answertext" name="answer" rows="4" cols="105" placeholder="Post Your Answer !" style="resize: none; border-radius: 10px;"></textarea>
+                <button class="float-right mt-5" style="display: none;" id="answerbtn1">
+                <strong id="answerbtn" class='answer' data-href="{{question.questionId}}">Answer</strong></button>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

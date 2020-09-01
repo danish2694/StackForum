@@ -62,9 +62,10 @@
     });
 });
 
+
 //  for votes on questions
 function votes(val){
-  if (!is_session()){
+  if (!is_flag().Result){
     alert('You need to login before voting')
   }
   else{
@@ -72,18 +73,20 @@ function votes(val){
   console.log(res);
   $.ajax({
     method:'POST',
-    url:'/vote/',
+    url:'/votes/vote/',
 
     data:{
       questionId : res[1],
       action : res[0],
     },
     success:function(e){
-      // console.log(e,parseInt($('#votesCounter').html()))
+      if(!e.flag){
+        alert(e.Response);
+      }
+      else{
       $('#'+res[1]).html(parseInt($('#'+res[1]).html()) + parseInt(e.count))
       alert(e.Response);
-      // var nxt = $(this).closest("span").nextAll("span[votesCounter]").first();
-      
+      }
       
     },
     error:function(e){
@@ -96,31 +99,40 @@ function votes(val){
 // for answer votes
 
 $('.vote').on('click',function(e){
+  if (!is_flag().Result){
+    alert('You need to login before voting')
+  }
+  else{
+  var answerId = $(this).attr("data-href");
+    console.log($(this).attr("name"),answerId);
 
   $.ajax({
     method:'POST',
-    url:'/answervote/',
+    url:'/votes/answervote/',
     data:{
       questionId:$(this).attr("data-value"),
-      answerId:$(this).attr("data-href"),
+      answerId:answerId,
       action:$(this).attr("name"),
     },
     success:function(e){
-      console.log(e);
-      $('#'+res[1]).html(parseInt($('#'+res[1]).html()) + parseInt(e.count))
+      if(!e.flag){
+        alert(e.Response);
+      }
+      else{      
+      $('#'+answerId).html(parseInt($('#'+answerId).html()) + parseInt(e.count))
       alert(e.Response);
+      }
     },
     error:function(e){
       console.log('error')
     }
   })
 
-  console.log($(this).attr("data-href"));
-  console.log($(this).attr("name"));
+ }
 })
 
 
-function is_session(){
+function is_flag(){
   var result = false;
   $.ajax({
     method:'POST',
@@ -128,7 +140,7 @@ function is_session(){
     data:{},
     async: false,
     success:function(e){
-      result = e.Result;
+      result = e;
     },
     error:function(e){
       console.log('error',e)
@@ -139,8 +151,8 @@ function is_session(){
 
 // for validating question modal with session
 $('#questionModalButton').on('click',function(e){
-  // console.log(is_session(result))
-  if (!is_session()){
+  // console.log(is_flag(result))
+  if (!is_flag()){
     alert('Please Login to Continue!');
   }
   else{}
@@ -155,7 +167,7 @@ $('#answerbtn').on('click',function(e){
     e.preventDefault();
   }
   else{
-    if (is_session()){
+    if (is_flag()){
     $('#answersubmit').submit();
     }
     else{ 

@@ -82,17 +82,17 @@
                                 <span style="font-size:large;font-weight: bold;">
                                     
                                 {{question.question}}
-                                {{question.questionId}}
+                                
                                 </span>
                                 <br>
                                 <span style="color:gray">
                                     {{answer.User.FirstName}} {{answer.User.LastName}}
-                                    {% if not question.answer %}
+                                    {% if not question.answers %}
                                     <span> No answers Yet</span>
                                     {% endif %}
                                    
                                     <!-- {{question.answer|slice:1}} -->
-                                    {% for ans in question.answer|slice:1  %}
+                                    {% for ans in question.answers|slice:1  %}
                                     {{ans.answer  }}
                                     <br>
                                     {% endfor %}

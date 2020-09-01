@@ -25,7 +25,7 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/">AskForum</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -47,8 +47,13 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 
             </form>
-            <a href="#" class="btn btn-primary mr-2">Sign In</a>
-            <a href="#" class="btn btn-secondary">Sign up</a>
+            {% if not request.session.user %}
+            <a href="/login/" class="btn btn-primary mr-2">Sign In</a>
+            <a href="/register/" class="btn btn-secondary">Sign up</a>
+
+            {% elif request.session.user %}
+            <a href="/logout/" class="btn btn-secondary">Sign Out</a>
+            {% endif %}
         </div>
     </nav>
 

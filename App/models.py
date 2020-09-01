@@ -25,6 +25,7 @@ class UserDetail(models.Model):
 	SecurityQuestion = models.CharField(max_length=150,default='',blank=True)
 	SecurityAnswer = models.CharField(max_length=500,default='',blank=True)
 	profilePic = models.ImageField(upload_to='media', default='media/user.png')
+	Score = models.IntegerField(default=0)
 	# Categories = models.ListCharField(
 	# 	base_field = models.CharField(max_length=50, blank=True),
 	# 	max_length = (100*100)

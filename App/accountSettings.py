@@ -6,23 +6,14 @@ def registerNewAccount(**kwargs):
     lName = kwargs['lName']
     userId = fName + lName + str(uuid.uuid4().hex)[:10]
     
-    email = kwargs['email']
-    mobile = kwargs['mobile']
-    age = kwargs['age']
-    password = kwargs['password']
-    confirmPassword = kwargs['confirmPassword']
-    gender = kwargs['gender']
-    securityQuestion = kwargs['securityQuestion']
-    securityAnswer = kwargs['securityAnswer']
-
-
     if UserDetail.objects.filter(Email=kwargs['email']):
         message = (f"Account Already Present with {email} !!")
         return message
         
     else:
-        UserDetail(UserId=userId,FirstName=fName,LastName=lName,Password=make_password(password),
-        SecurityQuestion=securityQuestion,SecurityAnswer=securityAnswer,Gender=gender,Email=email).save()
+        UserDetail(UserId=userId,FirstName=fName,LastName=lName,Password=make_password(kwargs['password']),
+        SecurityQuestion=kwargs['securityQuestion'],SecurityAnswer=kwargs['securityAnswer'],
+        Gender=kwargs['gender'],Email=kwargs['email']).save()
         message = (f"Welcome Aboard: {fName} {lName} !!")
         return message
 

@@ -17,6 +17,7 @@ urlpatterns = [
     
     path('answer/<str:id>/', views.answer, name='answer'),
 
+    path('profile/<str:id>', views.profile, name='profile'),
     path('recent/', views.recent, name='recent'),
     path('mostAnswered/', views.mostAnswered, name='mostAnswered'),
     path('mostVisited/', views.mostVisited, name='mostVisited'),

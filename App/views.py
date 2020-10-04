@@ -11,6 +11,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Case, Value, When
 import datetime
 
+
+@property
+def loggedUser(request):
+	if request.session.has_key('user'):
+		return request.session['user']
+	else:
+		return None
+
+print(loggedUser)
+
 @csrf_exempt
 def sessionval(request):
 	if request.session.has_key('user'):
@@ -43,6 +53,10 @@ def index(request):
 	params = {'AllQuestions':recentQuestions,'class_':'recent'}
 	return render(request,'index.html',params)
 	
+def profile(request, id):
+	userInfo = UserDetail.objects.get(UserId=id)
+	params = {'user':userInfo}
+	return render(request, 'Profile.html', params)
 
 def register(request):
 	if request.session.has_key('user'):

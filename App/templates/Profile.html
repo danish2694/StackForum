@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="StyleSheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Profile Page</title>
+</head>
+<body>
+    
+
+    <header>
+
+    </header>
+    <div class="container">
+
+        
+        <!-- First Section -->
+        <section>
+            <div class="row">
+            <div class="col-md-8 col-md-2 col-sm-12 col-12">
+            <div class="row" id="ProfileWrapper">
+                <img src="{{user.profilePic.url}}" class="profileImage">
+                <div class="profileData">
+                <h2>{{user.FirstName}} {{user.LastName}}</h2>
+                <h5>Software Developer</h5>
+                <p>Write a description</p>
+                </div>
+                <h2 style="text-align:right;float:right;color:maroon;padding:2%;" class="float-right;">
+                <svg width="2em" viewBox="0 0 16 16" class="bi bi-award-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0l1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                    <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                  </svg>25</h2>
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                <h5 style="color:black;border-left:5px solid grey;padding:5px;">Credintals & Highlights</h5>
+                <br>
+                <p><span class="material-icons" >
+                    work
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Work at Intern in IBM</p><br>
+                <p><span class="material-icons">
+                    school
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Lives in Army Institute of Technology</p><br>
+                  <p><span class="material-icons">
+                    gps_fixed
+                    </span> &nbsp;&nbsp;&nbsp;&nbsp;PHD in Global Wrming</p><br>
+
+            </div>
+        </div>
+        </section>
+        <hr>
+        <!-- Second Section -->
+        <section>
+            <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-4">
+                    <div class="tab">
+                        <h4 id="feed">Feeds</h4>
+                        <button class="tablinks" onclick="openCity(event, 'London')">Total Question</button>
+                        <button class="tablinks" onclick="openCity(event, 'Paris')">Total Answer</button>
+                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Best Answer</button>
+                        <button class="tablinks" onclick="openCity(event, 'Posted')">Posted Question</button>
+                      </div>
+                </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-8">
+                
+              
+              <div id="London" class="tabcontent">
+                <h3>Total Question</h3>
+                <p>London is the capital city of England.</p>
+              </div>
+              
+              <div id="Paris" class="tabcontent">
+                <h3>Total Answer</h3>
+                <p>Paris is the capital of France.</p>
+              </div>
+              
+              <div id="Tokyo" class="tabcontent">
+                <h3>Best Answer</h3>
+                <p>Tokyo is the capital of Japan.</p>
+              </div>
+
+              <div id="Posted" class="tabcontent">
+                <h3>Posted Question</h3>
+                <p>Tokyo is the capital of Japan.</p>
+              </div>
+            </div>
+
+            </div>
+        </section>
+    </div>
+
+
+<script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>

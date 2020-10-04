@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from App.models import *
 from django.db.models import Case, Value, When
 
+@property
 def loggedUser(request):
 	if request.session.has_key('user'):
 		return request.session['user']

@@ -94,8 +94,13 @@ class Questions(models.Model):
 	Views = models.IntegerField(default=0)
 	User = models.ForeignKey(UserDetail,on_delete=models.CASCADE,related_name='userinfo')
 	objects = models.DjongoManager()
+	
+	def gett(self):
+		return self.answers
+
 	def __str__(self):
-		return str(self.questionId
+		return str(self.question
+
 )
 
 
